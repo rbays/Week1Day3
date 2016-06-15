@@ -17,7 +17,7 @@ var countryButton = document.getElementById("countryButton");
 var input1 = document.getElementById("input1");
 var input2 = document.getElementById("input2");
 var input3 = document.getElementById("input3");
-var inputIndex = document.getElementById("inputIndex");
+var inputIndex = document.getElementById("indexInput");
 var indexVal = document.getElementById("indexVal");
 var countryIn = document.getElementById("countryIn");
 
@@ -97,4 +97,34 @@ function unshiftFunction() {
 		myArray.unshift(boxArray[i]);
 	}
 	outputArray();
+}
+
+
+//add to array at a given index
+indexButton.addEventListener('click',indexFunction,false);
+
+function indexFunction() {
+	var myItem = inputIndex.value;
+	var myIndex = parseInt(indexVal.value);
+	if (myIndex < myArray.length && myIndex >= 0) {
+		myArray.splice( myIndex,0,myItem);
+		outputArray();
+	}
+	else {
+		outputDiv.innerHTML += "<br>invalid index";
+	}
+}
+
+//search country string for a country
+countryButton.addEventListener('click',countryFunction,false);
+
+function countryFunction() {
+	var myItem = countryIn.value;
+	var countryIndex = countryArray.indexOf(myItem);
+	if (countryIndex === -1) {
+		outputDiv.innerHTML = myItem + " does not exist in country array";
+	}
+	else{
+		outputDiv.innerHTML = myItem + " is at index " + countryIndex;
+	}
 }
